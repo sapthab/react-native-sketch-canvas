@@ -217,6 +217,17 @@ export default class RNSketchCanvas extends React.Component {
                 {this.props.eraseComponent}
               </TouchableOpacity>)
             }
+
+            <View style={{ flexDirection: 'row' }}>
+              <FlatList
+                data={this.props.strokeColors}
+                extraData={this.state}
+                keyExtractor={() => Math.ceil(Math.random() * 10000000).toString()}
+                renderItem={this._renderItem}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+              />
+            </View>            
           </View>
           <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'flex-end' }}>
             {this.props.strokeWidthComponent && (
@@ -260,16 +271,6 @@ export default class RNSketchCanvas extends React.Component {
           permissionDialogTitle={this.props.permissionDialogTitle}
           permissionDialogMessage={this.props.permissionDialogMessage}
         />
-        <View style={{ flexDirection: 'row' }}>
-          <FlatList
-            data={this.props.strokeColors}
-            extraData={this.state}
-            keyExtractor={() => Math.ceil(Math.random() * 10000000).toString()}
-            renderItem={this._renderItem}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-          />
-        </View>
       </View>
     );
   }
